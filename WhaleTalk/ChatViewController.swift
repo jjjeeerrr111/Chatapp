@@ -45,6 +45,8 @@ class ChatViewController: UIViewController {
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         sendButton.setTitle("Send", forState: .Normal)
         sendButton.setContentHuggingPriority(251, forAxis: .Horizontal)
+        sendButton.setContentCompressionResistancePriority(751, forAxis: .Horizontal)
+        sendButton.addTarget(self, action: #selector(self.pressedSend(_:)), forControlEvents: .TouchUpInside)
         newMessageArea.addSubview(sendButton)
         
         bottomConstraint = newMessageArea.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor)
@@ -95,9 +97,22 @@ class ChatViewController: UIViewController {
             })
         }
     }
+    
+    func pressedSend(button: UIButton) {
+        guard let text = newMessageField.text where text.characters.count > 0 else {return}
+        
+        let message = Message()
+        message.text = text
+        message.incoming = false
+        messages.append(message)
+        
+        tableView.reloadData()
+        tableView.scrollToRowAtIndexPath(NSIndexPath(forRow:tableView.numberOfRowsInSection(0)-1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+    }
     //this will move the newMessageArea up when keyboard is shown by redrawing the view
     func keyboardWillShow(notification: NSNotification) {
         self.updateBottomConstaint(notification)
+        tableView.scrollToRowAtIndexPath(NSIndexPath(forRow:tableView.numberOfRowsInSection(0)-1, inSection: 0), atScrollPosition: .Bottom, animated: true)
     }
     
     //this will move the newMessageArea down when keyboard will hide by redrawing the view
