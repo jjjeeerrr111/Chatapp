@@ -38,6 +38,7 @@ class ChatViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.estimatedRowHeight = 44
+        
         view.addSubview(tableView)
         
         let tableViewConstraints : [NSLayoutConstraint] = [tableView.topAnchor.constraintEqualToAnchor(view.topAnchor), tableView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor), tableView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor), tableView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor)];
@@ -63,6 +64,8 @@ extension ChatViewController : UITableViewDataSource {
         let message = messages[indexPath.row]
         cell.messageLabel.text = message.text
         cell.incoming(message.incoming)
+        //remove separator line
+        cell.separatorInset = UIEdgeInsetsMake(0, tableView.bounds.size.width, 0, 0)
         return cell
     }
 }

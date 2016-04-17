@@ -29,7 +29,7 @@ class ChatCell: UITableViewCell {
         messageLabel.centerYAnchor.constraintEqualToAnchor(bubbleImageView.centerYAnchor).active = true
         
         bubbleImageView.widthAnchor.constraintEqualToAnchor(messageLabel.widthAnchor, constant: 50).active = true
-        bubbleImageView.heightAnchor.constraintEqualToAnchor(messageLabel.heightAnchor).active = true
+        bubbleImageView.heightAnchor.constraintEqualToAnchor(messageLabel.heightAnchor, constant: 20).active = true
         
         outgoingConstaints = [bubbleImageView.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor), bubbleImageView.leadingAnchor.constraintGreaterThanOrEqualToAnchor(contentView.centerXAnchor)]
         
@@ -39,7 +39,7 @@ class ChatCell: UITableViewCell {
         bubbleImageView.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor, constant: -10).active = true
         
         
-        messageLabel.textAlignment = .Center
+        //messageLabel.textAlignment = .Center
         messageLabel.numberOfLines = 0
         
     }
@@ -50,10 +50,12 @@ class ChatCell: UITableViewCell {
     
     func incoming(incoming: Bool) {
         if incoming {
+            messageLabel.textAlignment = .Left
             NSLayoutConstraint.deactivateConstraints(outgoingConstaints)
             NSLayoutConstraint.activateConstraints(incomingConstaints)
             bubbleImageView.image = bubble.incoming
         } else {
+            messageLabel.textAlignment = .Right
             NSLayoutConstraint.deactivateConstraints(incomingConstaints)
             NSLayoutConstraint.activateConstraints(outgoingConstaints)
             bubbleImageView.image = bubble.outgoing
