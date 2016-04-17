@@ -12,6 +12,8 @@
 		57ECAC881CC3315D006CE193 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57ECAC861CC3315D006CE193 /* Main.storyboard */; };
 		57ECAC8A1CC3315D006CE193 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57ECAC891CC3315D006CE193 /* Assets.xcassets */; };
 		57ECAC8D1CC3315D006CE193 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57ECAC8B1CC3315D006CE193 /* LaunchScreen.storyboard */; };
+		57ECAC951CC33442006CE193 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ECAC941CC33442006CE193 /* Message.swift */; };
+		57ECAC971CC33717006CE193 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ECAC961CC33717006CE193 /* ChatCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		57ECAC891CC3315D006CE193 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57ECAC8C1CC3315D006CE193 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57ECAC8E1CC3315D006CE193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57ECAC941CC33442006CE193 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		57ECAC961CC33717006CE193 /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				57ECAC821CC3315D006CE193 /* AppDelegate.swift */,
 				57ECAC841CC3315D006CE193 /* ChatViewController.swift */,
+				57ECAC961CC33717006CE193 /* ChatCell.swift */,
+				57ECAC941CC33442006CE193 /* Message.swift */,
 				57ECAC861CC3315D006CE193 /* Main.storyboard */,
 				57ECAC891CC3315D006CE193 /* Assets.xcassets */,
 				57ECAC8B1CC3315D006CE193 /* LaunchScreen.storyboard */,
@@ -135,6 +141,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57ECAC951CC33442006CE193 /* Message.swift in Sources */,
+				57ECAC971CC33717006CE193 /* ChatCell.swift in Sources */,
 				57ECAC851CC3315D006CE193 /* ChatViewController.swift in Sources */,
 				57ECAC831CC3315D006CE193 /* AppDelegate.swift in Sources */,
 			);
