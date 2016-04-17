@@ -12,7 +12,8 @@ class ChatViewController: UIViewController {
     
     private let tableView = UITableView()
     
-    private var messages = [Message]()
+    private var sections = [NSDate:[Message]]()
+    private var dates = [NSDate]()
     private let cellIdentifier = "Cell"
     private let newMessageField = UITextView()
     private var bottomConstraint : NSLayoutConstraint!
@@ -22,13 +23,20 @@ class ChatViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         var localIncoming = true
+        var date = NSDate(timeIntervalSince1970: 1100000000)
+        
         for i in 0...10 {
             let m = Message()
             //m.text = String(i)
             m.text = "This is a longer message.\(i)"
             m.incoming = localIncoming
+            m.timeStamp = date
             localIncoming = !localIncoming
-            messages.append(m)
+            addMessage(m)
+            
+            if i%2 == 0 {
+                date = NSDate(timeInterval: 60*60*24, sinceDate:date)
+            }
             
         }
         
@@ -109,12 +117,30 @@ class ChatViewController: UIViewController {
         let message = Message()
         message.text = text
         message.incoming = false
-        messages.append(message)
+        message.timeStamp = NSDate()
+        addMessage(message)
         newMessageField.text = ""
         tableView.reloadData()
         tableView.scrollToBottom()
         view.endEditing(true)
     }
+    
+    func addMessage(message: Message) {
+        guard let date = message.timeStamp else {return}
+        let calendar = NSCalendar.currentCalendar()
+        let startDay = calendar.startOfDayForDate(date)
+        
+        var messages = sections[startDay]
+        
+        if messages == nil {
+            dates.append(startDay)
+            messages = [Message]()
+        }
+        messages!.append(message)
+        sections[startDay] = messages
+    }
+    
+    
     //this will move the newMessageArea up when keyboard is shown by redrawing the view
     func keyboardWillShow(notification: NSNotification) {
         self.updateBottomConstaint(notification)
@@ -135,17 +161,28 @@ class ChatViewController: UIViewController {
 
 extension ChatViewController : UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return getMessages(section).count
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return dates.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:indexPath) as! ChatCell
+        let messages = getMessages(indexPath.section)
         let message = messages[indexPath.row]
         cell.messageLabel.text = message.text
         cell.incoming(message.incoming)
         //remove separator line
         cell.separatorInset = UIEdgeInsetsMake(0, tableView.bounds.size.width, 0, 0)
+        cell.backgroundColor = UIColor.clearColor()
         return cell
+    }
+    
+    func getMessages(section: Int) -> [Message] {
+        let date = dates[section]
+        return sections[date]!
     }
 }
 
