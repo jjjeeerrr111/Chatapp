@@ -80,6 +80,10 @@ class ChatViewController: UIViewController {
         view.addGestureRecognizer(tapRecognizer)
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.scrollToBottom()
+    }
     
     func handleSingleTap(recognizer: UITapGestureRecognizer) {
         view.endEditing(true)
@@ -95,6 +99,7 @@ class ChatViewController: UIViewController {
             UIView.animateWithDuration(animationDuration, animations: {
                 self.view.layoutIfNeeded()
             })
+            tableView.scrollToBottom()
         }
     }
     
@@ -105,14 +110,14 @@ class ChatViewController: UIViewController {
         message.text = text
         message.incoming = false
         messages.append(message)
-        
+        newMessageField.text = ""
         tableView.reloadData()
-        tableView.scrollToRowAtIndexPath(NSIndexPath(forRow:tableView.numberOfRowsInSection(0)-1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+        tableView.scrollToBottom()
+        view.endEditing(true)
     }
     //this will move the newMessageArea up when keyboard is shown by redrawing the view
     func keyboardWillShow(notification: NSNotification) {
         self.updateBottomConstaint(notification)
-        tableView.scrollToRowAtIndexPath(NSIndexPath(forRow:tableView.numberOfRowsInSection(0)-1, inSection: 0), atScrollPosition: .Bottom, animated: true)
     }
     
     //this will move the newMessageArea down when keyboard will hide by redrawing the view

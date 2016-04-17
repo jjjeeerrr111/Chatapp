@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		574D1E611CC3A44A0065B836 /* UITableView+Scroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574D1E601CC3A44A0065B836 /* UITableView+Scroll.swift */; };
 		57ECAC831CC3315D006CE193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ECAC821CC3315D006CE193 /* AppDelegate.swift */; };
 		57ECAC851CC3315D006CE193 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ECAC841CC3315D006CE193 /* ChatViewController.swift */; };
 		57ECAC881CC3315D006CE193 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57ECAC861CC3315D006CE193 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		574D1E601CC3A44A0065B836 /* UITableView+Scroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+Scroll.swift"; path = "../UITableView+Scroll.swift"; sourceTree = "<group>"; };
 		57ECAC7F1CC3315D006CE193 /* WhaleTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhaleTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57ECAC821CC3315D006CE193 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57ECAC841CC3315D006CE193 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			children = (
 				57ECAC821CC3315D006CE193 /* AppDelegate.swift */,
 				57ECAC841CC3315D006CE193 /* ChatViewController.swift */,
+				574D1E601CC3A44A0065B836 /* UITableView+Scroll.swift */,
 				57ECAC961CC33717006CE193 /* ChatCell.swift */,
 				57ECAC941CC33442006CE193 /* Message.swift */,
 				57ECAC861CC3315D006CE193 /* Main.storyboard */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				574D1E611CC3A44A0065B836 /* UITableView+Scroll.swift in Sources */,
 				57ECAC951CC33442006CE193 /* Message.swift in Sources */,
 				57ECAC971CC33717006CE193 /* ChatCell.swift in Sources */,
 				57ECAC851CC3315D006CE193 /* ChatViewController.swift in Sources */,
@@ -296,6 +300,7 @@
 				57ECAC931CC3315D006CE193 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
