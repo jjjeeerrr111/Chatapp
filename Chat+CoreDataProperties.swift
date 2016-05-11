@@ -1,5 +1,5 @@
 //
-//  Message+CoreDataProperties.swift
+//  Chat+CoreDataProperties.swift
 //  WhaleTalk
 //
 //  Created by Jeremy Sharvit on 2016-05-11.
@@ -12,11 +12,9 @@
 import Foundation
 import CoreData
 
-extension Message {
+extension Chat {
 
-    @NSManaged var text: String?
-    @NSManaged var incoming: NSNumber?
-    @NSManaged var timestamp: NSDate?
-    @NSManaged var chat: Chat?
+    @NSManaged var lastMessageTime: NSDate?
+    @NSManaged var messages: NSSet?
 
 }

@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		571793BF1CE3D01F0044903D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 571793BD1CE3D01F0044903D /* Model.xcdatamodeld */; };
-		571793C21CE3D0F20044903D /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571793C01CE3D0F20044903D /* Message+CoreDataProperties.swift */; };
 		571793C31CE3D0F20044903D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571793C11CE3D0F20044903D /* Message.swift */; };
+		571793C71CE3D92C0044903D /* Chat+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571793C41CE3D92C0044903D /* Chat+CoreDataProperties.swift */; };
+		571793C81CE3D92C0044903D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571793C51CE3D92C0044903D /* Chat.swift */; };
+		571793CB1CE3D94D0044903D /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571793CA1CE3D94D0044903D /* Message+CoreDataProperties.swift */; };
+		571793CD1CE3DACF0044903D /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571793CC1CE3DACF0044903D /* ChatCell.swift */; };
+		571793CF1CE3DE330044903D /* AllChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571793CE1CE3DE330044903D /* AllChatsViewController.swift */; };
 		574D1E611CC3A44A0065B836 /* UITableView+Scroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574D1E601CC3A44A0065B836 /* UITableView+Scroll.swift */; };
 		57861DC51CDEDAD4008D218E /* CDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57861DC41CDEDAD4008D218E /* CDHelper.swift */; };
 		57ECAC831CC3315D006CE193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ECAC821CC3315D006CE193 /* AppDelegate.swift */; };
@@ -17,13 +21,17 @@
 		57ECAC881CC3315D006CE193 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57ECAC861CC3315D006CE193 /* Main.storyboard */; };
 		57ECAC8A1CC3315D006CE193 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57ECAC891CC3315D006CE193 /* Assets.xcassets */; };
 		57ECAC8D1CC3315D006CE193 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57ECAC8B1CC3315D006CE193 /* LaunchScreen.storyboard */; };
-		57ECAC971CC33717006CE193 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ECAC961CC33717006CE193 /* ChatCell.swift */; };
+		57ECAC971CC33717006CE193 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ECAC961CC33717006CE193 /* MessageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		571793BE1CE3D01F0044903D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		571793C01CE3D0F20044903D /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Message+CoreDataProperties.swift"; path = "../Message+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		571793C11CE3D0F20044903D /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = ../Message.swift; sourceTree = "<group>"; };
+		571793C11CE3D0F20044903D /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		571793C41CE3D92C0044903D /* Chat+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Chat+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		571793C51CE3D92C0044903D /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		571793CA1CE3D94D0044903D /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Message+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		571793CC1CE3DACF0044903D /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		571793CE1CE3DE330044903D /* AllChatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllChatsViewController.swift; sourceTree = "<group>"; };
 		574D1E601CC3A44A0065B836 /* UITableView+Scroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+Scroll.swift"; path = "../UITableView+Scroll.swift"; sourceTree = "<group>"; };
 		57861DC41CDEDAD4008D218E /* CDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDHelper.swift; sourceTree = "<group>"; };
 		57ECAC7F1CC3315D006CE193 /* WhaleTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhaleTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,7 +41,7 @@
 		57ECAC891CC3315D006CE193 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57ECAC8C1CC3315D006CE193 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		57ECAC8E1CC3315D006CE193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		57ECAC961CC33717006CE193 /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		57ECAC961CC33717006CE193 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +58,10 @@
 		57ECAC761CC3315D006CE193 = {
 			isa = PBXGroup;
 			children = (
+				571793CA1CE3D94D0044903D /* Message+CoreDataProperties.swift */,
+				571793C11CE3D0F20044903D /* Message.swift */,
+				571793C41CE3D92C0044903D /* Chat+CoreDataProperties.swift */,
+				571793C51CE3D92C0044903D /* Chat.swift */,
 				57ECAC811CC3315D006CE193 /* WhaleTalk */,
 				57ECAC801CC3315D006CE193 /* Products */,
 			);
@@ -68,12 +80,12 @@
 			children = (
 				57ECAC821CC3315D006CE193 /* AppDelegate.swift */,
 				57ECAC841CC3315D006CE193 /* ChatViewController.swift */,
+				571793CE1CE3DE330044903D /* AllChatsViewController.swift */,
 				574D1E601CC3A44A0065B836 /* UITableView+Scroll.swift */,
-				57ECAC961CC33717006CE193 /* ChatCell.swift */,
+				57ECAC961CC33717006CE193 /* MessageCell.swift */,
+				571793CC1CE3DACF0044903D /* ChatCell.swift */,
 				57ECAC861CC3315D006CE193 /* Main.storyboard */,
 				57861DC41CDEDAD4008D218E /* CDHelper.swift */,
-				571793C01CE3D0F20044903D /* Message+CoreDataProperties.swift */,
-				571793C11CE3D0F20044903D /* Message.swift */,
 				571793BD1CE3D01F0044903D /* Model.xcdatamodeld */,
 				57ECAC891CC3315D006CE193 /* Assets.xcassets */,
 				57ECAC8B1CC3315D006CE193 /* LaunchScreen.storyboard */,
@@ -153,13 +165,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				571793C71CE3D92C0044903D /* Chat+CoreDataProperties.swift in Sources */,
 				574D1E611CC3A44A0065B836 /* UITableView+Scroll.swift in Sources */,
+				571793CD1CE3DACF0044903D /* ChatCell.swift in Sources */,
 				57861DC51CDEDAD4008D218E /* CDHelper.swift in Sources */,
+				571793C81CE3D92C0044903D /* Chat.swift in Sources */,
 				571793BF1CE3D01F0044903D /* Model.xcdatamodeld in Sources */,
-				57ECAC971CC33717006CE193 /* ChatCell.swift in Sources */,
-				571793C21CE3D0F20044903D /* Message+CoreDataProperties.swift in Sources */,
+				571793CF1CE3DE330044903D /* AllChatsViewController.swift in Sources */,
+				57ECAC971CC33717006CE193 /* MessageCell.swift in Sources */,
 				571793C31CE3D0F20044903D /* Message.swift in Sources */,
 				57ECAC851CC3315D006CE193 /* ChatViewController.swift in Sources */,
+				571793CB1CE3D94D0044903D /* Message+CoreDataProperties.swift in Sources */,
 				57ECAC831CC3315D006CE193 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
