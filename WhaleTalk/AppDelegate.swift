@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        let vc = window?.rootViewController as! ChatViewController
+        let vc = AllChatsViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        window?.rootViewController = nav
         let context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         context.persistentStoreCoordinator = CDHelper.sharedInstance.coordinator
         vc.context = context
