@@ -9,13 +9,13 @@
 import UIKit
 import CoreData
 
-class AllChatsViewController: UIViewController {
+class AllChatsViewController: UIViewController, TableViewFetchedResultsDisplayer {
     
     var context:NSManagedObjectContext?
     private var fetchedResultsController:NSFetchedResultsController?
     private let tableView = UITableView(frame: CGRectZero, style: .Plain)
     private let cellIdentifier = "MessageCell"
-
+    private var fetchedResultDelegate : NSFetchedResultsControllerDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,7 +43,8 @@ class AllChatsViewController: UIViewController {
             let request = NSFetchRequest(entityName: "Chat")
             request.sortDescriptors = [NSSortDescriptor(key: "lastMessageTime", ascending: false)]
             fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-            fetchedResultsController?.delegate = self
+            fetchedResultDelegate = TableViewFetchedResultsDelegate(tableView: tableView, displayer: self)
+            fetchedResultsController?.delegate = fetchedResultDelegate
             do {
                 try fetchedResultsController?.performFetch()
             } catch {
@@ -60,7 +61,10 @@ class AllChatsViewController: UIViewController {
     }
     
     func newChat() {
-        
+        let vc = NewChatViewController()
+        vc.context = context
+        let navVC = UINavigationController(rootViewController: vc)
+        presentViewController(navVC, animated: true, completion: nil)
     }
     
     func fakeData() {
@@ -68,9 +72,9 @@ class AllChatsViewController: UIViewController {
         let chat = NSEntityDescription.insertNewObjectForEntityForName("Chat", inManagedObjectContext: context) as? Chat
     }
     
-    func configureCell(cell: UITableViewCell, atIndexPath: NSIndexPath) {
+    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let cell = cell as! ChatCell
-        guard let chat = fetchedResultsController?.objectAtIndexPath(atIndexPath) as? Chat else {return}
+        guard let chat = fetchedResultsController?.objectAtIndexPath(indexPath) as? Chat else {return}
         let formatter = NSDateFormatter()
         formatter.dateFormat = "MM/dd/yy"
         cell.nameLabel.text = "Eliot"
@@ -114,42 +118,4 @@ extension AllChatsViewController:UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         guard let chat = fetchedResultsController?.objectAtIndexPath(indexPath) as? Chat else {return}
     }
-}
-
-extension AllChatsViewController:NSFetchedResultsControllerDelegate {
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        tableView.beginUpdates()
-    }
-    
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        switch type {
-        case .Insert:
-            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-        case .Delete:
-            tableView.deleteSections(NSIndexSet(index:sectionIndex), withRowAnimation: .Fade)
-        default:
-            break
-        }
-    }
-    
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        switch type {
-        case .Insert:
-            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        case .Update:
-            let cell = tableView.cellForRowAtIndexPath(indexPath!)
-            configureCell(cell!, atIndexPath: indexPath!)
-            tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        case .Move:
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        case .Delete:
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        }
-    }
-    
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        tableView.endUpdates()
-    }
-    
 }
