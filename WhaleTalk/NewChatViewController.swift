@@ -24,22 +24,11 @@ class NewChatViewController: UIViewController, TableViewFetchedResultsDisplayer 
         title = "New Chat"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(NewChatViewController.cancel))
         automaticallyAdjustsScrollViewInsets = false
-        view.addSubview(tableView)
         
+        self.fillViewWith(tableView)
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
-        
-        let tableViewConstraints:[NSLayoutConstraint] = [
-            tableView.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor),
-            tableView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
-            tableView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor),
-            tableView.bottomAnchor.constraintEqualToAnchor(bottomLayoutGuide.topAnchor)
-        ]
-        
-        NSLayoutConstraint.activateConstraints(tableViewConstraints)
-        
         
         if let context = context {
             let request = NSFetchRequest(entityName: "Contact")

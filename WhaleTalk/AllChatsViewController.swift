@@ -22,22 +22,11 @@ class AllChatsViewController: UIViewController, TableViewFetchedResultsDisplayer
         title = "Chats"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "new-chat"), style: .Plain, target: self, action: #selector(AllChatsViewController.newChat))
         automaticallyAdjustsScrollViewInsets = false
+        self.fillViewWith(tableView)
         tableView.registerClass(ChatCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.tableFooterView = UIView(frame: CGRectZero)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
-        view.addSubview(tableView)
-        
-        let tableViewConstraints:[NSLayoutConstraint] = [
-            tableView.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor),
-            tableView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
-            tableView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor),
-            tableView.bottomAnchor.constraintEqualToAnchor(bottomLayoutGuide.topAnchor)
-        ]
-        
-        NSLayoutConstraint.activateConstraints(tableViewConstraints)
-        
         
         if let context = context {
             let request = NSFetchRequest(entityName: "Chat")

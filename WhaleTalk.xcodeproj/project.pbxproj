@@ -20,6 +20,7 @@
 		576636611CE5283B0021A2D5 /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576636601CE5283B0021A2D5 /* NewChatViewController.swift */; };
 		57861DC51CDEDAD4008D218E /* CDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57861DC41CDEDAD4008D218E /* CDHelper.swift */; };
 		57C329521CE53B020046B1B7 /* TableViewFetchedResultsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C329511CE53AFE0046B1B7 /* TableViewFetchedResultsDelegate.swift */; };
+		57C329541CE53F300046B1B7 /* UIViewController+FillWithView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C329531CE53F300046B1B7 /* UIViewController+FillWithView.swift */; };
 		57ECAC831CC3315D006CE193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ECAC821CC3315D006CE193 /* AppDelegate.swift */; };
 		57ECAC851CC3315D006CE193 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ECAC841CC3315D006CE193 /* ChatViewController.swift */; };
 		57ECAC881CC3315D006CE193 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57ECAC861CC3315D006CE193 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		576636601CE5283B0021A2D5 /* NewChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
 		57861DC41CDEDAD4008D218E /* CDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDHelper.swift; sourceTree = "<group>"; };
 		57C329511CE53AFE0046B1B7 /* TableViewFetchedResultsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewFetchedResultsDelegate.swift; sourceTree = "<group>"; };
+		57C329531CE53F300046B1B7 /* UIViewController+FillWithView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+FillWithView.swift"; sourceTree = "<group>"; };
 		57ECAC7F1CC3315D006CE193 /* WhaleTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhaleTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57ECAC821CC3315D006CE193 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57ECAC841CC3315D006CE193 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				576636601CE5283B0021A2D5 /* NewChatViewController.swift */,
 				574D1E601CC3A44A0065B836 /* UITableView+Scroll.swift */,
 				57C329511CE53AFE0046B1B7 /* TableViewFetchedResultsDelegate.swift */,
+				57C329531CE53F300046B1B7 /* UIViewController+FillWithView.swift */,
 				57ECAC961CC33717006CE193 /* MessageCell.swift */,
 				571793CC1CE3DACF0044903D /* ChatCell.swift */,
 				57ECAC861CC3315D006CE193 /* Main.storyboard */,
@@ -186,6 +189,7 @@
 				571793C81CE3D92C0044903D /* Chat.swift in Sources */,
 				571793BF1CE3D01F0044903D /* Model.xcdatamodeld in Sources */,
 				5766365F1CE525540021A2D5 /* Contact.swift in Sources */,
+				57C329541CE53F300046B1B7 /* UIViewController+FillWithView.swift in Sources */,
 				571793CF1CE3DE330044903D /* AllChatsViewController.swift in Sources */,
 				5766365E1CE525540021A2D5 /* Contact+CoreDataProperties.swift in Sources */,
 				57ECAC971CC33717006CE193 /* MessageCell.swift in Sources */,
