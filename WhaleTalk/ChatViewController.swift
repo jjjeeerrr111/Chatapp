@@ -19,7 +19,12 @@ class ChatViewController: UIViewController {
     private let newMessageField = UITextView()
     private var bottomConstraint : NSLayoutConstraint!
     var context: NSManagedObjectContext?
+    var chat : Chat?
     
+    private enum Error: ErrorType {
+        case NoChat
+        case NoContext
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +32,11 @@ class ChatViewController: UIViewController {
         
         
         do {
+            guard let chat = chat else {throw Error.NoChat}
+            guard let context = context else {throw Error.NoContext}
             let request = NSFetchRequest(entityName: "Message")
             request.sortDescriptors = [NSSortDescriptor(key:"timestamp", ascending: false)]
-            if let result = try context?.executeFetchRequest(request) as? [Message] {
+            if let result = try context.executeFetchRequest(request) as? [Message] {
                 for message in result {
                     addMessage(message)
                 }
@@ -37,6 +44,7 @@ class ChatViewController: UIViewController {
         } catch {
             print("We couldn't fetch")
         }
+        automaticallyAdjustsScrollViewInsets = false
         let newMessageArea = UIView()
         newMessageArea.backgroundColor = UIColor.lightGrayColor()
         newMessageArea.translatesAutoresizingMaskIntoConstraints = false
