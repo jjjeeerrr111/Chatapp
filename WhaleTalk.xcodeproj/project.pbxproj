@@ -93,23 +93,87 @@
 			isa = PBXGroup;
 			children = (
 				57ECAC821CC3315D006CE193 /* AppDelegate.swift */,
-				57ECAC841CC3315D006CE193 /* ChatViewController.swift */,
-				571793CE1CE3DE330044903D /* AllChatsViewController.swift */,
-				576636601CE5283B0021A2D5 /* NewChatViewController.swift */,
-				574D1E601CC3A44A0065B836 /* UITableView+Scroll.swift */,
-				57C329511CE53AFE0046B1B7 /* TableViewFetchedResultsDelegate.swift */,
-				57C329531CE53F300046B1B7 /* UIViewController+FillWithView.swift */,
-				57C329551CE652930046B1B7 /* ChatCreationDelegate.swift */,
-				57ECAC961CC33717006CE193 /* MessageCell.swift */,
+				57F6FBEC1D513E7D00E20021 /* Frameworks */,
+				57F6FBEB1D513E7700E20021 /* Helpers */,
+				57F6FBEA1D513E6A00E20021 /* ChatVC */,
+				57F6FBE91D513E6100E20021 /* Protocols */,
+				57F6FBE81D513E5800E20021 /* NewChatVC */,
+				57F6FBE71D513E4D00E20021 /* AllChatsVC */,
+				57F6FBE61D513E3B00E20021 /* ContactsVC */,
+				57F6FBED1D513EF000E20021 /* Supporting Files */,
+			);
+			path = WhaleTalk;
+			sourceTree = "<group>";
+		};
+		57F6FBE61D513E3B00E20021 /* ContactsVC */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ContactsVC;
+			sourceTree = "<group>";
+		};
+		57F6FBE71D513E4D00E20021 /* AllChatsVC */ = {
+			isa = PBXGroup;
+			children = (
 				571793CC1CE3DACF0044903D /* ChatCell.swift */,
-				57ECAC861CC3315D006CE193 /* Main.storyboard */,
+				571793CE1CE3DE330044903D /* AllChatsViewController.swift */,
+			);
+			name = AllChatsVC;
+			sourceTree = "<group>";
+		};
+		57F6FBE81D513E5800E20021 /* NewChatVC */ = {
+			isa = PBXGroup;
+			children = (
+				576636601CE5283B0021A2D5 /* NewChatViewController.swift */,
+			);
+			name = NewChatVC;
+			sourceTree = "<group>";
+		};
+		57F6FBE91D513E6100E20021 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				57C329551CE652930046B1B7 /* ChatCreationDelegate.swift */,
+				57C329511CE53AFE0046B1B7 /* TableViewFetchedResultsDelegate.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		57F6FBEA1D513E6A00E20021 /* ChatVC */ = {
+			isa = PBXGroup;
+			children = (
+				57ECAC961CC33717006CE193 /* MessageCell.swift */,
+				57ECAC841CC3315D006CE193 /* ChatViewController.swift */,
+			);
+			name = ChatVC;
+			sourceTree = "<group>";
+		};
+		57F6FBEB1D513E7700E20021 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
 				57861DC41CDEDAD4008D218E /* CDHelper.swift */,
+				57C329531CE53F300046B1B7 /* UIViewController+FillWithView.swift */,
+				574D1E601CC3A44A0065B836 /* UITableView+Scroll.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		57F6FBEC1D513E7D00E20021 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		57F6FBED1D513EF000E20021 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				57ECAC861CC3315D006CE193 /* Main.storyboard */,
 				571793BD1CE3D01F0044903D /* Model.xcdatamodeld */,
 				57ECAC891CC3315D006CE193 /* Assets.xcassets */,
 				57ECAC8B1CC3315D006CE193 /* LaunchScreen.storyboard */,
 				57ECAC8E1CC3315D006CE193 /* Info.plist */,
 			);
-			path = WhaleTalk;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

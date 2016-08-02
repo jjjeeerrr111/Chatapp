@@ -39,7 +39,7 @@ class AllChatsViewController: UIViewController, TableViewFetchedResultsDisplayer
             } catch {
                 print("There was a problem fetching - allchatsviewcontroller")
             }
-            fakeData()
+            
         }
         
     }
