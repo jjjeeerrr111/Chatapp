@@ -74,10 +74,14 @@ class ChatViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.estimatedRowHeight = 44
+        tableView.backgroundView = UIImageView(image: UIImage(named: "MessageBubble"))
+        tableView.separatorColor = UIColor.clearColor()
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 25
         
         view.addSubview(tableView)
         
-        let tableViewConstraints : [NSLayoutConstraint] = [tableView.topAnchor.constraintEqualToAnchor(view.topAnchor), tableView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor), tableView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor), tableView.bottomAnchor.constraintEqualToAnchor(newMessageArea.topAnchor)];
+        let tableViewConstraints : [NSLayoutConstraint] = [tableView.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor), tableView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor), tableView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor), tableView.bottomAnchor.constraintEqualToAnchor(newMessageArea.topAnchor)];
         
         NSLayoutConstraint.activateConstraints(tableViewConstraints)
         
@@ -86,6 +90,11 @@ class ChatViewController: UIViewController {
         
         //add nsnotification center listener for keyboard going down
         NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(self.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+        
+        if let mainContext = context?.parentContext ?? context {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.contextUpdated(_:)), name: NSManagedObjectContextObjectsDidChangeNotification, object: mainContext)
+        }
         
         //add UITapGesture to close keyboard
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap(_:)))
@@ -118,13 +127,13 @@ class ChatViewController: UIViewController {
     
     func pressedSend(button: UIButton) {
         guard let text = newMessageField.text where text.characters.count > 0 else {return}
-        
+        checkTemporaryContext()
         guard let context = context else {return}
         guard let message = NSEntityDescription.insertNewObjectForEntityForName("Message", inManagedObjectContext: context) as? Message else {return}
         message.text = text
         message.isIncoming = false
         message.timestamp = NSDate()
-        addMessage(message)
+        
         do {
             try context.save()
         } catch {
@@ -132,8 +141,6 @@ class ChatViewController: UIViewController {
             return
         }
         newMessageField.text = ""
-        tableView.reloadData()
-        tableView.scrollToBottom()
         view.endEditing(true)
     }
     
@@ -229,6 +236,39 @@ extension ChatViewController : UITableViewDataSource {
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01
+    }
+    
+    func contextUpdated(notifiation: NSNotification) {
+        guard let set = (notifiation.userInfo![NSInsertedObjectsKey] as? NSSet) else {
+            return
+        }
+        
+        let objects = set.allObjects
+        
+        for object in objects {
+            guard let message = object as? Message else {continue}
+            if message.chat?.objectID == chat?.objectID {
+                addMessage(message)
+            }
+        }
+        
+        tableView.reloadData()
+        tableView.scrollToBottom()
+    }
+    
+    func checkTemporaryContext() {
+        if let mainContext = context?.parentContext, chat = chat {
+            let tempContext = context
+            context = mainContext
+            
+            do {
+                try tempContext?.save()
+            } catch {
+                print("Error saving temp context")
+            }
+            
+            self.chat = mainContext.objectWithID(chat.objectID) as? Chat
+        }
     }
 }
 
