@@ -67,11 +67,13 @@ class AllChatsViewController: UIViewController, TableViewFetchedResultsDisplayer
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let cell = cell as! ChatCell
         guard let chat = fetchedResultsController?.objectAtIndexPath(indexPath) as? Chat else {return}
+        guard let contact = chat.participants?.anyObject() as? Contact else {return}
+        guard let lastMessage = chat.lastMessage, timestamp = lastMessage.timestamp, text = lastMessage.text else {return}
         let formatter = NSDateFormatter()
         formatter.dateFormat = "MM/dd/yy"
-        cell.nameLabel.text = "Eliot"
-        cell.dateLabel.text = formatter.stringFromDate(NSDate())
-        cell.messageLabel.text = "Hey"
+        cell.nameLabel.text = contact.fullName
+        cell.dateLabel.text = formatter.stringFromDate(timestamp)
+        cell.messageLabel.text = text
     }
     
     func created(chat chat: Chat, inContext context: NSManagedObjectContext) {
@@ -116,5 +118,10 @@ extension AllChatsViewController:UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         guard let chat = fetchedResultsController?.objectAtIndexPath(indexPath) as? Chat else {return}
+        let vc = ChatViewController()
+        vc.context = context
+        vc.chat = chat
+        navigationController?.pushViewController(vc, animated: true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }

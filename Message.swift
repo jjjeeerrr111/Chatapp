@@ -14,14 +14,7 @@ class Message: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
     var isIncoming :Bool {
-        get {
-            guard let incoming = incoming else {return false}
-            return incoming.boolValue
-        }
-        
-        set(incoming) {
-            self.incoming = incoming
-        }
+        return sender != nil
     }
     
 }

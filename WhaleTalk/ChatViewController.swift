@@ -131,9 +131,9 @@ class ChatViewController: UIViewController {
         guard let context = context else {return}
         guard let message = NSEntityDescription.insertNewObjectForEntityForName("Message", inManagedObjectContext: context) as? Message else {return}
         message.text = text
-        message.isIncoming = false
         message.timestamp = NSDate()
-        
+        message.chat = chat
+        chat?.lastMessageTime = message.timestamp
         do {
             try context.save()
         } catch {
@@ -176,8 +176,43 @@ class ChatViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    func contextUpdated(notifiation: NSNotification) {
+        guard let set = (notifiation.userInfo![NSInsertedObjectsKey] as? NSSet) else {
+            return
+        }
+        
+        let objects = set.allObjects
+        
+        for object in objects {
+            guard let message = object as? Message else {continue}
+            if message.chat?.objectID == chat?.objectID {
+                addMessage(message)
+            }
+        }
+        
+        tableView.reloadData()
+        tableView.scrollToBottom()
+    }
+    
+    func checkTemporaryContext() {
+        if let mainContext = context?.parentContext, chat = chat {
+            let tempContext = context
+            context = mainContext
+            
+            do {
+                try tempContext?.save()
+            } catch {
+                print("Error saving temp context")
+            }
+            
+            self.chat = mainContext.objectWithID(chat.objectID) as? Chat
+        }
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 }
 
 extension ChatViewController : UITableViewDataSource {
@@ -236,39 +271,6 @@ extension ChatViewController : UITableViewDataSource {
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01
-    }
-    
-    func contextUpdated(notifiation: NSNotification) {
-        guard let set = (notifiation.userInfo![NSInsertedObjectsKey] as? NSSet) else {
-            return
-        }
-        
-        let objects = set.allObjects
-        
-        for object in objects {
-            guard let message = object as? Message else {continue}
-            if message.chat?.objectID == chat?.objectID {
-                addMessage(message)
-            }
-        }
-        
-        tableView.reloadData()
-        tableView.scrollToBottom()
-    }
-    
-    func checkTemporaryContext() {
-        if let mainContext = context?.parentContext, chat = chat {
-            let tempContext = context
-            context = mainContext
-            
-            do {
-                try tempContext?.save()
-            } catch {
-                print("Error saving temp context")
-            }
-            
-            self.chat = mainContext.objectWithID(chat.objectID) as? Chat
-        }
     }
 }
 
