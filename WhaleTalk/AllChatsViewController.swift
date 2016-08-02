@@ -25,6 +25,7 @@ class AllChatsViewController: UIViewController, TableViewFetchedResultsDisplayer
         self.fillViewWith(tableView)
         tableView.registerClass(ChatCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.tableHeaderView = createHeader()
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -81,6 +82,51 @@ class AllChatsViewController: UIViewController, TableViewFetchedResultsDisplayer
         vc.context = context
         vc.chat = chat
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func createHeader() -> UIView {
+        let header = UIView()
+        let newGroupButton = UIButton()
+        newGroupButton.translatesAutoresizingMaskIntoConstraints = false
+        header.addSubview(newGroupButton)
+        
+        newGroupButton.setTitle("New Group", forState: .Normal)
+        newGroupButton.setTitleColor(view.tintColor, forState: .Normal)
+        newGroupButton.addTarget(self, action: #selector(self.pressedNewGroup), forControlEvents: .TouchUpInside)
+        
+        let border = UIView()
+        border.translatesAutoresizingMaskIntoConstraints = false
+        header.addSubview(border)
+        border.backgroundColor = UIColor.lightGrayColor()
+        
+        
+        let contraints:[NSLayoutConstraint] = [
+            newGroupButton.heightAnchor.constraintEqualToAnchor(header.heightAnchor),
+            newGroupButton.trailingAnchor.constraintEqualToAnchor(header.layoutMarginsGuide.trailingAnchor),
+            border.heightAnchor.constraintEqualToConstant(1),
+            border.leadingAnchor.constraintEqualToAnchor(header.leadingAnchor),
+            border.trailingAnchor.constraintEqualToAnchor(header.trailingAnchor),
+            border.bottomAnchor.constraintEqualToAnchor(header.bottomAnchor)
+        ]
+        
+        NSLayoutConstraint.activateConstraints(contraints)
+        
+        //the following lines of code determine the smallest size of the header frame based on the contents
+        //of the header view - brilliant
+        header.setNeedsLayout()
+        header.layoutIfNeeded()
+        
+        let height = header.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        var frame  = header.frame
+        frame.size.height = height
+        header.frame = frame
+        
+        return header
+    }
+    
+    func pressedNewGroup() {
+        
+        
     }
     
 }
