@@ -33,6 +33,8 @@
 		57F6FBF41D52650800E20021 /* ContactImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6FBF31D52650800E20021 /* ContactImporter.swift */; };
 		57F6FBF71D5269A500E20021 /* PhoneNumber+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6FBF51D5269A500E20021 /* PhoneNumber+CoreDataProperties.swift */; };
 		57F6FBF81D5269A500E20021 /* PhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6FBF61D5269A500E20021 /* PhoneNumber.swift */; };
+		57F6FBFC1D527DD600E20021 /* ContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6FBFB1D527DD600E20021 /* ContextViewController.swift */; };
+		57F6FBFE1D528CB800E20021 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6FBFD1D528CB800E20021 /* ContactsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		57F6FBF31D52650800E20021 /* ContactImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactImporter.swift; sourceTree = "<group>"; };
 		57F6FBF51D5269A500E20021 /* PhoneNumber+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhoneNumber+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		57F6FBF61D5269A500E20021 /* PhoneNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumber.swift; sourceTree = "<group>"; };
+		57F6FBFB1D527DD600E20021 /* ContextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextViewController.swift; sourceTree = "<group>"; };
+		57F6FBFD1D528CB800E20021 /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,9 +109,10 @@
 			isa = PBXGroup;
 			children = (
 				57ECAC821CC3315D006CE193 /* AppDelegate.swift */,
-				57F6FBEF1D5142CA00E20021 /* NewGroupViewController.swift */,
-				57F6FBF11D52530200E20021 /* NewGroupParticipantsViewController.swift */,
-				57F6FBF31D52650800E20021 /* ContactImporter.swift */,
+				57F6FBFD1D528CB800E20021 /* ContactsViewController.swift */,
+				57F6FBFB1D527DD600E20021 /* ContextViewController.swift */,
+				57F6FBFA1D527D9000E20021 /* New Group Participants VC */,
+				57F6FBF91D527D7D00E20021 /* New Group VC */,
 				57F6FBEC1D513E7D00E20021 /* Frameworks */,
 				57F6FBEB1D513E7700E20021 /* Helpers */,
 				57F6FBEA1D513E6A00E20021 /* ChatVC */,
@@ -165,6 +170,7 @@
 		57F6FBEB1D513E7700E20021 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				57F6FBF31D52650800E20021 /* ContactImporter.swift */,
 				57861DC41CDEDAD4008D218E /* CDHelper.swift */,
 				57C329531CE53F300046B1B7 /* UIViewController+FillWithView.swift */,
 				574D1E601CC3A44A0065B836 /* UITableView+Scroll.swift */,
@@ -189,6 +195,22 @@
 				57ECAC8E1CC3315D006CE193 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		57F6FBF91D527D7D00E20021 /* New Group VC */ = {
+			isa = PBXGroup;
+			children = (
+				57F6FBEF1D5142CA00E20021 /* NewGroupViewController.swift */,
+			);
+			name = "New Group VC";
+			sourceTree = "<group>";
+		};
+		57F6FBFA1D527D9000E20021 /* New Group Participants VC */ = {
+			isa = PBXGroup;
+			children = (
+				57F6FBF11D52530200E20021 /* NewGroupParticipantsViewController.swift */,
+			);
+			name = "New Group Participants VC";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +286,7 @@
 			files = (
 				571793C71CE3D92C0044903D /* Chat+CoreDataProperties.swift in Sources */,
 				57F6FBF41D52650800E20021 /* ContactImporter.swift in Sources */,
+				57F6FBFC1D527DD600E20021 /* ContextViewController.swift in Sources */,
 				574D1E611CC3A44A0065B836 /* UITableView+Scroll.swift in Sources */,
 				571793CD1CE3DACF0044903D /* ChatCell.swift in Sources */,
 				57C329521CE53B020046B1B7 /* TableViewFetchedResultsDelegate.swift in Sources */,
@@ -285,6 +308,7 @@
 				571793CB1CE3D94D0044903D /* Message+CoreDataProperties.swift in Sources */,
 				57ECAC831CC3315D006CE193 /* AppDelegate.swift in Sources */,
 				57C329561CE652930046B1B7 /* ChatCreationDelegate.swift in Sources */,
+				57F6FBFE1D528CB800E20021 /* ContactsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

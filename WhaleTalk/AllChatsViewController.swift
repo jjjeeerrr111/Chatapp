@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AllChatsViewController: UIViewController, TableViewFetchedResultsDisplayer, ChatCreationDelegate {
+class AllChatsViewController: UIViewController, TableViewFetchedResultsDisplayer, ChatCreationDelegate, ContextViewController {
     
     var context:NSManagedObjectContext?
     private var fetchedResultsController:NSFetchedResultsController?
@@ -81,6 +81,7 @@ class AllChatsViewController: UIViewController, TableViewFetchedResultsDisplayer
         let vc = ChatViewController()
         vc.context = context
         vc.chat = chat
+        vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -173,6 +174,7 @@ extension AllChatsViewController:UITableViewDelegate {
         let vc = ChatViewController()
         vc.context = context
         vc.chat = chat
+        vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
