@@ -29,6 +29,7 @@
 		57ECAC8D1CC3315D006CE193 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57ECAC8B1CC3315D006CE193 /* LaunchScreen.storyboard */; };
 		57ECAC971CC33717006CE193 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ECAC961CC33717006CE193 /* MessageCell.swift */; };
 		57F6FBF01D5142CA00E20021 /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6FBEF1D5142CA00E20021 /* NewGroupViewController.swift */; };
+		57F6FBF21D52530200E20021 /* NewGroupParticipantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6FBF11D52530200E20021 /* NewGroupParticipantsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		57ECAC8E1CC3315D006CE193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57ECAC961CC33717006CE193 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		57F6FBEF1D5142CA00E20021 /* NewGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
+		57F6FBF11D52530200E20021 /* NewGroupParticipantsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupParticipantsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				57ECAC821CC3315D006CE193 /* AppDelegate.swift */,
 				57F6FBEF1D5142CA00E20021 /* NewGroupViewController.swift */,
+				57F6FBF11D52530200E20021 /* NewGroupParticipantsViewController.swift */,
 				57F6FBEC1D513E7D00E20021 /* Frameworks */,
 				57F6FBEB1D513E7700E20021 /* Helpers */,
 				57F6FBEA1D513E6A00E20021 /* ChatVC */,
@@ -257,6 +260,7 @@
 				57861DC51CDEDAD4008D218E /* CDHelper.swift in Sources */,
 				576636611CE5283B0021A2D5 /* NewChatViewController.swift in Sources */,
 				571793C81CE3D92C0044903D /* Chat.swift in Sources */,
+				57F6FBF21D52530200E20021 /* NewGroupParticipantsViewController.swift in Sources */,
 				571793BF1CE3D01F0044903D /* Model.xcdatamodeld in Sources */,
 				5766365F1CE525540021A2D5 /* Contact.swift in Sources */,
 				57C329541CE53F300046B1B7 /* UIViewController+FillWithView.swift in Sources */,
