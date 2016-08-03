@@ -18,6 +18,8 @@ class ContactsSearchResultsController: UITableViewController {
         }
     }
     
+    var contactSelector:ContactSelector?
+    
     private let cellIdentifier = "ContactsSearchCell"
     
 
@@ -52,6 +54,7 @@ class ContactsSearchResultsController: UITableViewController {
  
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let contact = filteredContacts[indexPath.row]
+        contactSelector?.selectedContact(contact)
     }
 
     /*

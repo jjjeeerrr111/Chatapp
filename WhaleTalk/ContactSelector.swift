@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+
+protocol ContactSelector {
+    func selectedContact(contact: Contact)
+}

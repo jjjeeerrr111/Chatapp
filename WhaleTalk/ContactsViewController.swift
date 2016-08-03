@@ -11,7 +11,7 @@ import CoreData
 import Contacts
 import ContactsUI
 
-class ContactsViewController: UIViewController, ContextViewController, TableViewFetchedResultsDisplayer {
+class ContactsViewController: UIViewController, ContextViewController, TableViewFetchedResultsDisplayer, ContactSelector {
     
     var context: NSManagedObjectContext?
     
@@ -31,7 +31,7 @@ class ContactsViewController: UIViewController, ContextViewController, TableView
         automaticallyAdjustsScrollViewInsets = false
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.tableFooterView = UIView(frame: CGRectZero)
-        //tableView.delegate = self
+        tableView.delegate = self
         tableView.dataSource = self
         fillViewWith(tableView)
         
@@ -54,6 +54,7 @@ class ContactsViewController: UIViewController, ContextViewController, TableView
         //this is how to display search results from another table view controller on top of this view
         //while the user is searching in the search bar
         let resultsVC = ContactsSearchResultsController()
+        resultsVC.contactSelector = self
         resultsVC.contacts = fetchedResultsController?.fetchedObjects as! [Contact]
         searchController = UISearchController(searchResultsController: resultsVC)
         searchController?.searchResultsUpdater = resultsVC
@@ -75,12 +76,36 @@ class ContactsViewController: UIViewController, ContextViewController, TableView
     func newContact() {
         
     }
+    
+    func selectedContact(contact: Contact) {
+        guard let id = contact.contactID else {return}
+        let store = CNContactStore()
+        let cnContact:CNContact
+        do {
+            cnContact = try store.unifiedContactWithIdentifier(id, keysToFetch: [CNContactViewController.descriptorForRequiredKeys()])
+        } catch {
+            return
+        }
+        
+        let vc = CNContactViewController(forContact: cnContact)
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+        searchController?.active = false
+    }
 
 }
 
-//extension ContactsViewController:UITableViewDelegate {
-//    
-//}
+extension ContactsViewController:UITableViewDelegate {
+    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        guard let contact = fetchedResultsController?.objectAtIndexPath(indexPath) as? Contact else {return}
+        selectedContact(contact)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+}
 
 extension ContactsViewController:UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
