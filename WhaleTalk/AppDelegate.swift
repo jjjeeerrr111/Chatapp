@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    private var contactImporter:ContactImporter?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -25,7 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         vc.context = context
         let contactsContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         contactsContext.persistentStoreCoordinator = CDHelper.sharedInstance.coordinator
+        contactImporter = ContactImporter(context: context)
         importContacts(contactsContext)
+        contactImporter?.listenForChanges()
         return true
     }
 
@@ -57,8 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         guard !dataSeeded else {return}
         
-        let contactImporter = ContactImporter(context: context)
-        contactImporter.fetch()
+        contactImporter?.fetch()
         
         NSUserDefaults.standardUserDefaults().setObject(true, forKey: "dataSeeded")
     }
