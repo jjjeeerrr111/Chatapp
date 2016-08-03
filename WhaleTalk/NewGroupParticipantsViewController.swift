@@ -20,6 +20,10 @@ class NewGroupParticipantsViewController: UIViewController {
     private let cellIdentifier = "ContactCell"
     
     private var displayedContacts = [Contact]()
+    private var allContacts = [Contact]()
+    private var selectedContacts = [Contact]()
+    
+    private var isSearching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +35,10 @@ class NewGroupParticipantsViewController: UIViewController {
         
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.tableFooterView = UIView(frame: CGRectZero)
         searchField = createSearchField()
+        searchField.delegate = self
         tableView.tableHeaderView = searchField
         fillViewWith(tableView)
         
@@ -42,7 +48,7 @@ class NewGroupParticipantsViewController: UIViewController {
             
             do {
                 if let result = try context.executeFetchRequest(request) as? [Contact] {
-                    displayedContacts = result
+                    allContacts = result
                 }
             } catch {
                 print("there was a problem fetching contacts")
@@ -99,6 +105,11 @@ class NewGroupParticipantsViewController: UIViewController {
         
     }
     
+    private func endSearch() {
+        displayedContacts = selectedContacts
+        tableView.reloadData()
+    }
+    
 }
 
 extension NewGroupParticipantsViewController:UITableViewDataSource {
@@ -112,5 +123,51 @@ extension NewGroupParticipantsViewController:UITableViewDataSource {
         cell.textLabel?.text = contact.fullName
         cell.selectionStyle = .None
         return cell
+    }
+}
+
+extension NewGroupParticipantsViewController:UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+            return true
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        guard isSearching else {return}
+        let contact = displayedContacts[indexPath.row]
+        
+        guard !selectedContacts.contains(contact) else {return}
+        selectedContacts.append(contact)
+        allContacts.removeAtIndex(allContacts.indexOf(contact)!)
+        searchField.text = ""
+        endSearch()
+        showCreateButton(true)
+    }
+}
+
+extension NewGroupParticipantsViewController:UITextFieldDelegate {
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        isSearching = true
+        
+        guard let currentText = textField.text else {
+            endSearch()
+            return true
+        }
+        
+        let text = NSString(string: currentText).stringByReplacingCharactersInRange(range, withString: string)
+        if text.characters.count == 0 {
+            endSearch()
+            return true
+        }
+        
+        //this goes through all contacts and adds matches to displayed contacts
+        displayedContacts = allContacts.filter{contact in
+            let match = contact.fullName.rangeOfString(text) != nil
+            return match
+        }
+        
+        tableView.reloadData()
+        return true
     }
 }
