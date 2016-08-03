@@ -102,14 +102,16 @@ class NewGroupParticipantsViewController: UIViewController {
     }
     
     func createChat() {
-        
+        guard let chat = chat, context = context else {return}
+        chat.participants = NSSet(array: selectedContacts)
+        chatCreationDelegate?.created(chat: chat, inContext: context)
+        dismissViewControllerAnimated(false, completion: nil)
     }
     
     private func endSearch() {
         displayedContacts = selectedContacts
         tableView.reloadData()
     }
-    
 }
 
 extension NewGroupParticipantsViewController:UITableViewDataSource {

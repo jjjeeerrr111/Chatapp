@@ -13,6 +13,11 @@ import CoreData
 class Chat: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
+    
+    var isGroupChat:Bool {
+        return participants?.count > 1
+    }
+    
     var lastMessage:Message? {
         let request = NSFetchRequest(entityName: "Message")
         request.predicate = NSPredicate(format: "chat = %@", self)

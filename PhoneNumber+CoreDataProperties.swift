@@ -1,5 +1,5 @@
 //
-//  Contact+CoreDataProperties.swift
+//  PhoneNumber+CoreDataProperties.swift
 //  WhaleTalk
 //
 //  Created by Jeremy Sharvit on 2016-08-03.
@@ -12,13 +12,9 @@
 import Foundation
 import CoreData
 
-extension Contact {
+extension PhoneNumber {
 
-    @NSManaged var firstName: String?
-    @NSManaged var lastName: String?
-    @NSManaged var contactID: String?
-    @NSManaged var chats: NSSet?
-    @NSManaged var messages: NSSet?
-    @NSManaged var phoneNumbers: NSSet?
+    @NSManaged var value: String?
+    @NSManaged var contact: Contact?
 
 }
