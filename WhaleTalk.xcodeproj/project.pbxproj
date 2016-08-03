@@ -35,6 +35,9 @@
 		57F6FBF81D5269A500E20021 /* PhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6FBF61D5269A500E20021 /* PhoneNumber.swift */; };
 		57F6FBFC1D527DD600E20021 /* ContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6FBFB1D527DD600E20021 /* ContextViewController.swift */; };
 		57F6FBFE1D528CB800E20021 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6FBFD1D528CB800E20021 /* ContactsViewController.swift */; };
+		57F6FC001D528FBF00E20021 /* TableViewFetchedResultsDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6FBFF1D528FBF00E20021 /* TableViewFetchedResultsDisplayer.swift */; };
+		57F6FC021D5293E300E20021 /* ContactsSearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6FC011D5293E300E20021 /* ContactsSearchResultsController.swift */; };
+		57F6FC041D52991800E20021 /* ContactSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6FC031D52991800E20021 /* ContactSelector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +71,9 @@
 		57F6FBF61D5269A500E20021 /* PhoneNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumber.swift; sourceTree = "<group>"; };
 		57F6FBFB1D527DD600E20021 /* ContextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextViewController.swift; sourceTree = "<group>"; };
 		57F6FBFD1D528CB800E20021 /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		57F6FBFF1D528FBF00E20021 /* TableViewFetchedResultsDisplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewFetchedResultsDisplayer.swift; sourceTree = "<group>"; };
+		57F6FC011D5293E300E20021 /* ContactsSearchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSearchResultsController.swift; sourceTree = "<group>"; };
+		57F6FC031D52991800E20021 /* ContactSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactSelector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,9 @@
 				57ECAC821CC3315D006CE193 /* AppDelegate.swift */,
 				57F6FBFD1D528CB800E20021 /* ContactsViewController.swift */,
 				57F6FBFB1D527DD600E20021 /* ContextViewController.swift */,
+				57F6FBFF1D528FBF00E20021 /* TableViewFetchedResultsDisplayer.swift */,
+				57F6FC011D5293E300E20021 /* ContactsSearchResultsController.swift */,
+				57F6FC031D52991800E20021 /* ContactSelector.swift */,
 				57F6FBFA1D527D9000E20021 /* New Group Participants VC */,
 				57F6FBF91D527D7D00E20021 /* New Group VC */,
 				57F6FBEC1D513E7D00E20021 /* Frameworks */,
@@ -286,6 +295,7 @@
 			files = (
 				571793C71CE3D92C0044903D /* Chat+CoreDataProperties.swift in Sources */,
 				57F6FBF41D52650800E20021 /* ContactImporter.swift in Sources */,
+				57F6FC001D528FBF00E20021 /* TableViewFetchedResultsDisplayer.swift in Sources */,
 				57F6FBFC1D527DD600E20021 /* ContextViewController.swift in Sources */,
 				574D1E611CC3A44A0065B836 /* UITableView+Scroll.swift in Sources */,
 				571793CD1CE3DACF0044903D /* ChatCell.swift in Sources */,
@@ -304,6 +314,8 @@
 				57ECAC971CC33717006CE193 /* MessageCell.swift in Sources */,
 				57F6FBF01D5142CA00E20021 /* NewGroupViewController.swift in Sources */,
 				571793C31CE3D0F20044903D /* Message.swift in Sources */,
+				57F6FC041D52991800E20021 /* ContactSelector.swift in Sources */,
+				57F6FC021D5293E300E20021 /* ContactsSearchResultsController.swift in Sources */,
 				57ECAC851CC3315D006CE193 /* ChatViewController.swift in Sources */,
 				571793CB1CE3D94D0044903D /* Message+CoreDataProperties.swift in Sources */,
 				57ECAC831CC3315D006CE193 /* AppDelegate.swift in Sources */,
