@@ -115,11 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				57ECAC821CC3315D006CE193 /* AppDelegate.swift */,
-				57F6FBFD1D528CB800E20021 /* ContactsViewController.swift */,
-				57F6FBFB1D527DD600E20021 /* ContextViewController.swift */,
-				57F6FBFF1D528FBF00E20021 /* TableViewFetchedResultsDisplayer.swift */,
-				57F6FC011D5293E300E20021 /* ContactsSearchResultsController.swift */,
-				57F6FC031D52991800E20021 /* ContactSelector.swift */,
 				57F6FBFA1D527D9000E20021 /* New Group Participants VC */,
 				57F6FBF91D527D7D00E20021 /* New Group VC */,
 				57F6FBEC1D513E7D00E20021 /* Frameworks */,
@@ -137,6 +132,8 @@
 		57F6FBE61D513E3B00E20021 /* ContactsVC */ = {
 			isa = PBXGroup;
 			children = (
+				57F6FBFD1D528CB800E20021 /* ContactsViewController.swift */,
+				57F6FC011D5293E300E20021 /* ContactsSearchResultsController.swift */,
 			);
 			name = ContactsVC;
 			sourceTree = "<group>";
@@ -161,6 +158,9 @@
 		57F6FBE91D513E6100E20021 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				57F6FC031D52991800E20021 /* ContactSelector.swift */,
+				57F6FBFF1D528FBF00E20021 /* TableViewFetchedResultsDisplayer.swift */,
+				57F6FBFB1D527DD600E20021 /* ContextViewController.swift */,
 				57C329551CE652930046B1B7 /* ChatCreationDelegate.swift */,
 				57C329511CE53AFE0046B1B7 /* TableViewFetchedResultsDelegate.swift */,
 			);

@@ -60,6 +60,7 @@ class ContactsViewController: UIViewController, ContextViewController, TableView
         searchController?.searchResultsUpdater = resultsVC
         definesPresentationContext = true
         tableView.tableHeaderView = searchController?.searchBar
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,7 +75,9 @@ class ContactsViewController: UIViewController, ContextViewController, TableView
     
     
     func newContact() {
-        
+        let vc = CNContactViewController(forNewContact: nil)
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func selectedContact(contact: Contact) {
@@ -131,5 +134,14 @@ extension ContactsViewController:UITableViewDataSource {
         let currentSection = sections[section]
         
         return currentSection.name
+    }
+}
+
+extension ContactsViewController:CNContactViewControllerDelegate {
+    func contactViewController(viewController: CNContactViewController, didCompleteWithContact contact: CNContact?) {
+        if contact == nil {
+            navigationController?.popViewControllerAnimated(true)
+            return
+        }
     }
 }

@@ -27,6 +27,7 @@ class ContactsSearchResultsController: UITableViewController {
         super.viewDidLoad()
 
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        
     }
 
     override func didReceiveMemoryWarning() {
