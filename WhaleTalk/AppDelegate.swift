@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     private var contactImporter:ContactImporter?
+    private var contactsSyncer:Syncer?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -25,12 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mainContext.persistentStoreCoordinator = CDHelper.sharedInstance.coordinator
         let contactsContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         contactsContext.persistentStoreCoordinator = CDHelper.sharedInstance.coordinator
+        contactsSyncer = Syncer(mainContext: mainContext, backgroundContext: contactsContext)
         contactImporter = ContactImporter(context: mainContext)
         importContacts(contactsContext)
         contactImporter?.listenForChanges()
         
         let tabController = UITabBarController()
-        let vcData:[(UIViewController, UIImage, String)] = [(ContactsViewController(), UIImage(named:"contact_icon")!, "Contacts"),(AllChatsViewController(), UIImage(named:"chat_icon")!, "Chats")]
+        let vcData:[(UIViewController, UIImage, String)] = [(FavoritesViewController(), UIImage(named: "favorites_icon")!, "Favorites"),(ContactsViewController(), UIImage(named:"contact_icon")!, "Contacts"),(AllChatsViewController(), UIImage(named:"chat_icon")!, "Chats")]
         
         let vcs = vcData.map{
             (vc: UIViewController, image: UIImage, title: String) -> UINavigationController in

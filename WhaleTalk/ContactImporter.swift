@@ -80,8 +80,12 @@ class ContactImporter : NSObject {
                             for cnVal in cnContact.phoneNumbers {
                                 guard let cnPhoneNumber = cnVal.value as? CNPhoneNumber else {continue}
                                 guard let phoneNumber = phoneNumbers[cnPhoneNumber.stringValue] ?? NSEntityDescription.insertNewObjectForEntityForName("PhoneNumber", inManagedObjectContext: self.context) as? PhoneNumber else {continue}
+                                phoneNumber.kind = CNLabeledValue.localizedStringForLabel(cnVal.label)
                                 phoneNumber.value = self.formatPhoneNumber(cnPhoneNumber)
                                 phoneNumber.contact = contact
+                            }
+                            if contact.inserted {
+                                contact.favorite = true
                             }
                         })
                         try self.context.save()
