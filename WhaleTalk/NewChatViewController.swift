@@ -96,8 +96,7 @@ extension NewChatViewController:UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         guard let contact = fetchedResultsContoller?.objectAtIndexPath(indexPath) as? Contact else {return}
         guard let context = context else {return}
-        guard let chat = NSEntityDescription.insertNewObjectForEntityForName("Chat", inManagedObjectContext: context) as? Chat else {return}
-        chat.add(participant: contact)
+        let chat = Chat.existing(directWith: contact, inContext: context) ?? Chat.new(directWith: contact, inContext: context)
         chatCreationDelegate?.created(chat: chat, inContext: context)
         dismissViewControllerAnimated(false, completion: nil)
     }

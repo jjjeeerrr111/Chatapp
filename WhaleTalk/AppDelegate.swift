@@ -16,6 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private var contactImporter:ContactImporter?
     private var contactsSyncer:Syncer?
+    private var contactsUploadSyncer:Syncer?
+    private var fireBaseSyncer:Syncer?
+    
+    private var fireBaseStore:FirebaseStore?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -26,10 +30,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mainContext.persistentStoreCoordinator = CDHelper.sharedInstance.coordinator
         let contactsContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         contactsContext.persistentStoreCoordinator = CDHelper.sharedInstance.coordinator
+        
+        let fireBaseContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        fireBaseContext.persistentStoreCoordinator = CDHelper.sharedInstance.coordinator
+        
+        
         contactsSyncer = Syncer(mainContext: mainContext, backgroundContext: contactsContext)
+        
+
+        
+        let fireBaseStore = FirebaseStore(context: fireBaseContext)
+        self.fireBaseStore = fireBaseStore
+        contactsUploadSyncer = Syncer(mainContext: mainContext, backgroundContext: fireBaseContext)
+        contactsUploadSyncer?.remoteStore = fireBaseStore
+        fireBaseSyncer = Syncer(mainContext: mainContext, backgroundContext: fireBaseContext)
+        fireBaseSyncer?.remoteStore = fireBaseStore
         contactImporter = ContactImporter(context: mainContext)
-        importContacts(contactsContext)
-        contactImporter?.listenForChanges()
+        //importContacts(contactsContext)
         
         let tabController = UITabBarController()
         let vcData:[(UIViewController, UIImage, String)] = [(FavoritesViewController(), UIImage(named: "favorites_icon")!, "Favorites"),(ContactsViewController(), UIImage(named:"contact_icon")!, "Contacts"),(AllChatsViewController(), UIImage(named:"chat_icon")!, "Chats")]
@@ -46,7 +63,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         tabController.viewControllers = vcs
-        window?.rootViewController = tabController
+        
+        if fireBaseStore.hasAuth() {
+            fireBaseStore.startSyncing()
+            contactImporter?.listenForChanges()
+            
+            window?.rootViewController = tabController
+        } else {
+            let vc = SignUpViewController()
+            vc.remoteStore = fireBaseStore
+            vc.rootViewController = tabController
+            vc.contactImporter = contactImporter
+            window?.rootViewController = vc
+        }
+        
         return true
     }
 
